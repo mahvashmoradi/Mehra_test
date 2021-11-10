@@ -1,0 +1,14 @@
+/*.card:nth-child(even){*/
+/*    !important*/
+/*    order: revert;*/
+/*    background-color: #006b1b;*/
+/*}*/
+body{
+        background-color: #006b1b;
+}
+.card
+{
+    !important
+    order: revert;
+    background-color: #006b1b;
+}

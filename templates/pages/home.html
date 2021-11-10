@@ -1,149 +1,58 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %} Home {% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}"/>
+{% endblock %}
 {% block content %}
-   <div class="uk-text-center">
-        <h1>Random Posts</h1>
-        <div class="uk-divider-small"></div>
-    </div>
-    <div>
-        <div class="uk-child-width-1-4@m" uk-grid>
-{% for item in post %}
-            <div>
-                <div class="uk-card uk-card-default">
-                    <div class="uk-card-media-top">
-                       {% if item.image %}
-                           <img src="{{ item.image.url }}" width="90" height="90" >
-{#                                    {% else %} <img src="{% static 'image/0.png' %}" class="card-img-top"> #}
-                       {% endif %}
+    <div class="container">
+        <h1 class="text-center">Random Posts</h1>
+
+        <section class="text-center mb-4">
+            <div class="row wow fadeIn">
+                {% for item in post %}
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card">
+                            <div class="view overlay">
+                                {% if item.image %}
+                                    <img src="{{ item.image.url }}" width="90" height="300" class="card-img-top">
+                                {% else %} <img src="{% static 'my_img/0.png' %}" class="card-img-top"> {% endif %}
+                            </div>
+                            <div class="card-body text-center">
+                                <h3 class="uk-card-title">{{ item.title }}</h3>
+                                <h4 class="font-weight-bold">
+                                    {{ item.description }}
+                                </h4>
+                            </div>
+                        </div>
                     </div>
-                    <div class="uk-card-body">
-                        <h3 class="uk-card-title">{{ item.title }}</h3>
-                        <p>{{ item.description }}</p>
+                {% endfor %}
+            </div>
+        </section>
+        <br>
+        <br>
+        <h1 class="text-center">Products</h1>
+        <section class="text-center mb-4">
+            <div class="row wow fadeIn">
+                {% for item in product %}
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h3 class="uk-card-title">{{ item.name }}</h3>
+                                <h4 class="font-weight-bold">
+                                    {{ item.price }}تومان
+                                </h4>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                {% endfor %}
             </div>
- {% endfor %}
-{#            <div>#}
-{#                <div class="uk-card uk-card-default">#}
-{#                    <div class="uk-card-body">#}
-{#                        <h3 class="uk-card-title">Media Bottom</h3>#}
-{#                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor#}
-{#                            incididunt.</p>#}
-{#                    </div>#}
-{#                    <div class="uk-card-media-bottom">#}
-{#                        <img src="{% static 'website/images/light.jpg' %}" alt="">#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div>#}
-{#                <div class="uk-card uk-card-default">#}
-{#                    <div class="uk-card-media-top">#}
-{#                        <img src="{% static 'website/images/light.jpg' %}" alt="">#}
-{#                    </div>#}
-{#                    <div class="uk-card-body">#}
-{#                        <h3 class="uk-card-title">Media Top</h3>#}
-{#                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor#}
-{#                            incididunt.</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div>#}
-{#                <div class="uk-card uk-card-default">#}
-{#                    <div class="uk-card-body">#}
-{#                        <h3 class="uk-card-title">Media Bottom</h3>#}
-{#                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor#}
-{#                            incididunt.</p>#}
-{#                    </div>#}
-{#                    <div class="uk-card-media-bottom">#}
-{#                        <img src="{% static 'website/images/light.jpg' %}" alt="">#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div>#}
-{#                <div class="uk-card uk-card-default">#}
-{#                    <div class="uk-card-media-top">#}
-{#                        <img src="{% static 'website/images/light.jpg' %}" alt="">#}
-{#                    </div>#}
-{#                    <div class="uk-card-body">#}
-{#                        <h3 class="uk-card-title">Media Top</h3>#}
-{#                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor#}
-{#                            incididunt.</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div>#}
-{#                <div class="uk-card uk-card-default">#}
-{#                    <div class="uk-card-body">#}
-{#                        <h3 class="uk-card-title">Media Bottom</h3>#}
-{#                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor#}
-{#                            incididunt.</p>#}
-{#                    </div>#}
-{#                    <div class="uk-card-media-bottom">#}
-{#                        <img src="{% static 'website/images/light.jpg' %}" alt="">#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div>#}
-{#                <div class="uk-card uk-card-default">#}
-{#                    <div class="uk-card-media-top">#}
-{#                        <img src="{% static 'website/images/light.jpg' %}" alt="">#}
-{#                    </div>#}
-{#                    <div class="uk-card-body">#}
-{#                        <h3 class="uk-card-title">Media Top</h3>#}
-{#                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor#}
-{#                            incididunt.</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div>#}
-{#                <div class="uk-card uk-card-default">#}
-{#                    <div class="uk-card-body">#}
-{#                        <h3 class="uk-card-title">Media Bottom</h3>#}
-{#                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor#}
-{#                            incididunt.</p>#}
-{#                    </div>#}
-{#                    <div class="uk-card-media-bottom">#}
-{#                        <img src="{% static 'website/images/light.jpg' %}" alt="">#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-        </div>
-    </div>
-    <br>
-    <br>
-    <div class="uk-text-center">
-        <h1>Products</h1>
-        <div class="uk-divider-small"></div>
-    </div>
-    <div>
-        <div class="uk-child-width-1-4@s" uk-grid>
-   {% for item in product %}
-            <div>
-                <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-                    <h3 class="uk-card-title uk-text-bolder">{{ item.name }}</h3>
-                    <div class="uk-card-title">{{ item.price }} Toman</div>
-                </div>
-            </div>
-{% endfor %}
-{#            <div>#}
-{#                <div class="uk-card uk-card-default uk-card-hover uk-card-body">#}
-{#                    <h3 class="uk-card-title uk-text-bolder">TV</h3>#}
-{#                    <div class="uk-card-title">98,000 Toman</div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div>#}
-{#                <div class="uk-card uk-card-default uk-card-hover uk-card-body">#}
-{#                    <h3 class="uk-card-title uk-text-bolder">Laptop</h3>#}
-{#                    <div class="uk-card-title">23,000 Toman</div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div>#}
-{#                <div class="uk-card uk-card-default uk-card-hover uk-card-body">#}
-{#                    <h3 class="uk-card-title uk-text-bolder">Carpet</h3>#}
-{#                    <div class="uk-card-title">47,000 Toman</div>#}
-{#                </div>#}
-{#            </div>#}
-        </div>
+        </section>
     </div>
 {% endblock content %}
+{% block script %}
+
+   $(document).ready(function () {
+
+    });
+{% endblock script %}

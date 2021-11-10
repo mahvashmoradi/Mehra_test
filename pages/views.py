@@ -25,7 +25,6 @@ class ContactView(View):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            # return HttpResponse("Your message is send")
             messages.info(request, "Your message is send")
             return redirect(reverse('contact'))
         else:
