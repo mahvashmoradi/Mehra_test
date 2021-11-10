@@ -4,11 +4,20 @@ from .models import ContactInfo
 
 
 class ContactForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ContactForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+
     class Meta:
         model = ContactInfo
         # fields = ['name','email','comment']
         fields = '__all__'
-
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': "Name"}),
+            'email': forms.TextInput(attrs={'placeholder': "Email"}),
+            'comment': forms.Textarea(attrs={'placeholder': "Write Comments", 'cols': 80, 'rows': 3}),
+        }
     def clean(self):
         # data from the form is fetched using super function
         super(ContactForm, self).clean()

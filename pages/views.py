@@ -10,6 +10,9 @@ from .forms import ContactForm
 
 
 class HomeView(View):
+    """
+    get post and product information and send to the home template
+    """
     def get(self, request):
         post = Post.objects.all()
         product = Product.objects.all()
@@ -18,10 +21,16 @@ class HomeView(View):
 
 class ContactView(View):
     def get(self, request, *args, **kwargs):
+        """
+        render form
+        """
         form = ContactForm()  # MODEL FORM
         return render(request, 'pages/contact_us.html', {'form': form})
 
     def post(self, request, *args, **kwargs):
+        """
+        save cleaned data
+        """
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
